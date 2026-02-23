@@ -6,7 +6,7 @@ Saved
 .vs
 .idea
 .vsconfig
-.DotSettings.user
+*.DotSettings.user
 *.VC.db
 *.opensdf
 *.opendb
