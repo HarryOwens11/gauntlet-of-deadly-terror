@@ -2,3 +2,8 @@
 
 
 #include "GauntletDeadlyTerror/Public/Components/DeathTriggerComponent.h"
+
+UDeathTriggerComponent::UDeathTriggerComponent()
+{
+	UPrimitiveComponent::SetCollisionProfileName("OverlapAll");
+}

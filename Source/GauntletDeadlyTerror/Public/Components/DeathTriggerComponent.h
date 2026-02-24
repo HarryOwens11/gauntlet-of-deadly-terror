@@ -13,4 +13,7 @@ UCLASS()
 class GAUNTLETDEADLYTERROR_API UDeathTriggerComponent : public UStaticMeshComponent
 {
 	GENERATED_BODY()
+	
+public:
+	UDeathTriggerComponent();
 };
