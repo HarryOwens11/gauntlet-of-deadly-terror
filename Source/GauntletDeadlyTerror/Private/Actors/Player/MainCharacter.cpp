@@ -11,6 +11,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
 #include "GauntletDeadlyTerror/Public/Components/DeathTriggerComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -58,6 +59,26 @@ void AMainCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+}
+
+void AMainCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
+	if (ResetTimer > -1.0f)
+	{
+		ResetTimer -= DeltaSeconds;
+		
+		if (ResetTimer <= -1.0f)
+		{
+			ResetTimer = 0.0f;
+		}
+		
+		if (ResetTimer <= 0.0f)
+		{
+			UGameplayStatics::OpenLevel(this, FName(UGameplayStatics::GetCurrentLevelName(this)));
+		}
+	}
 }
 
 void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -132,5 +153,10 @@ void AMainCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AA
 	if (UDeathTriggerComponent* Trigger = Cast<UDeathTriggerComponent>(OtherComp))
 	{
 		GetMesh()->SetSimulatePhysics(true);
+		DisableInput(Cast<APlayerController>(GetController()));
+		GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
+		GetCapsuleComponent()->SetEnableGravity(false);
+		Cast<UCharacterMovementComponent>(GetMovementComponent())->GravityScale = 0.0f;
+		ResetTimer = 2.0f;
 	}
 }

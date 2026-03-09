@@ -6,4 +6,5 @@
 UDeathTriggerComponent::UDeathTriggerComponent()
 {
 	UPrimitiveComponent::SetCollisionProfileName("OverlapAll");
+	SetHiddenInGame(true);
 }
