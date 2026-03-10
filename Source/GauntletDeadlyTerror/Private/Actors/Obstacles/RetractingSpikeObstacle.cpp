@@ -24,6 +24,7 @@ ARetractingSpikeObstacle::ARetractingSpikeObstacle()
 	UpTime = 3.f;
 	DownTime = 3.f;
 	Speed = 200.f;
+	Timer = 0.f;
 	
 	SpikesUp = false;
 	AutoMove = true;
@@ -36,7 +37,7 @@ void ARetractingSpikeObstacle::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	Timer = SpikesUp ? UpTime : DownTime;
+	Timer += SpikesUp ? UpTime : DownTime;
 	if (SpikesUp)
 	{
 		SpikeMesh->AddRelativeLocation(FVector(0.0f, 0.0f, MoveDistance));

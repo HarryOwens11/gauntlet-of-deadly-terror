@@ -24,6 +24,7 @@ void ASpinningObstacle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	AddActorWorldRotation(FRotator(0.0f, Speed * DeltaTime, 0.0f));
+	//SetActorRotation(FRotator(0.f, Speed * DeltaTime, 0.f) + GetActorRotation());
+	AddActorLocalRotation(FRotator(0.f, Speed * DeltaTime, 0.f));
 }
 

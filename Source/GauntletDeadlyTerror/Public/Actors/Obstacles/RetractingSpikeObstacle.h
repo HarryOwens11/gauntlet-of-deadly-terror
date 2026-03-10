@@ -42,6 +42,9 @@ class GAUNTLETDEADLYTERROR_API ARetractingSpikeObstacle : public AActor
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timing, meta = (AllowPrivateAccess = "true"))
 	float MoveDistance;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Timing, meta = (AllowPrivateAccess = "true"))
+	float Timer;
+	
 public:	
 	// Sets default values for this actor's properties
 	ARetractingSpikeObstacle();
@@ -55,6 +58,5 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	float Timer;
 	bool Moving;
 };
