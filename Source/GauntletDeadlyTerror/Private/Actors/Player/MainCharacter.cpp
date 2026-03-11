@@ -156,7 +156,9 @@ void AMainCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AA
 		DisableInput(Cast<APlayerController>(GetController()));
 		GetCapsuleComponent()->SetCollisionResponseToAllChannels(ECR_Ignore);
 		GetCapsuleComponent()->SetEnableGravity(false);
-		Cast<UCharacterMovementComponent>(GetMovementComponent())->GravityScale = 0.0f;
+		UCharacterMovementComponent* Movement = Cast<UCharacterMovementComponent>(GetMovementComponent());
+		Movement->GravityScale = 0.0f;
+		Movement->Velocity = FVector(0.0f, 0.0f, 0.0f);
 		ResetTimer = 2.0f;
 	}
 }
